@@ -1,20 +1,14 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db/database');
 
-const Post = sequelize.define('post', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
+const Post = sequelize.define('posts', {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
-    len: {
-      args: [(2, 24)],
-      msg: 'Must not be less than 2 or More than 24',
-    },
+    // len: {
+    //   args: [(2, 100)],
+    //   msg: 'Must not be less than 2 or More than 24',
+    // },
   },
   content: {
     type: DataTypes.TEXT,
