@@ -3,6 +3,13 @@ const sequelize = require('./db/database');
 
 const app = require('./app');
 
+// HANDLE UNCAUGHT EXCEPTIONS
+
+process.on('uncaughtException', (err) => {
+  console.log(err.name, err.message);
+  process.exit(1);
+});
+
 const port = process.env.PORT || 4001;
 
 sequelize
@@ -16,4 +23,10 @@ sequelize
   .catch((error) => {
     console.error('Unable to connect to the database:', error);
   });
-module.exports = app;
+  
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
