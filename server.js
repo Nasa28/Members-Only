@@ -13,7 +13,7 @@ process.on('uncaughtException', (err) => {
 const port = process.env.PORT || 4001;
 
 sequelize
-  .sync({ force: true })
+  .sync({ alter: true })
   .then(() => {
     app.listen(port, () => {
       console.log(`server running on port ${port}`);
@@ -23,7 +23,7 @@ sequelize
   .catch((error) => {
     console.error('Unable to connect to the database:', error);
   });
-  
+
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);
   server.close(() => {

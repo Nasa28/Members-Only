@@ -1,6 +1,6 @@
 const Post = require('../models/Post');
 const wrapAsync = require('../utils/wrapAsync');
-
+const data = require('../MOCK_DATA.json');
 exports.getPosts = wrapAsync(async (req, res, next) => {
   const posts = await Post.findAll();
 
@@ -20,6 +20,6 @@ exports.createPost = wrapAsync(async (req, res, next) => {
     imageUrl,
   });
   res.status(200).json({
-    newPost,
+    status: 'Post Created',
   });
 });
